@@ -1,15 +1,26 @@
 import express from "express";
 import nodemailer from "nodemailer";
 import dotenv from "dotenv";
+import path from "path";
+import { fileURLToPath } from "url";
+
+dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 3000;
 
-dotenv.config();
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 app.use(express.json());
-app.use(express.static("../public")); 
-app.post("/book-room", async (req, res) => { 
+
+app.use(express.static(path.join(__dirname, "../public")));
+
+app.get("/", (req, res) => {
+    res.sendFile(path.join(__dirname, "../public/index.html"));
+});
+
+app.post("/book-room", async (req, res) => {
     const booking = req.body;
 
     const transporter = nodemailer.createTransport({
@@ -20,22 +31,22 @@ app.post("/book-room", async (req, res) => {
         }
     });
 
-    const mailoptions = {
+    const mailOptions = {
         from: process.env.EMAIL,
         to: booking.email,
         subject: "Hotel Booking Confirmation",
         text: `Hello ${booking.name},
-        Your room has been booked successfully
-        Check-in : ${booking.checkin}
-        Check-out : ${booking.checkout}
-        Room Type : ${booking.room}
-        Guests : ${booking.guests}
-        
-        Thank you for choosing our hotel.`
+Your room has been booked successfully
+Check-in : ${booking.checkin}
+Check-out : ${booking.checkout}
+Room Type : ${booking.room}
+Guests : ${booking.guests}
+
+Thank you for choosing our hotel.`
     };
 
     try {
-        await transporter.sendMail(mailoptions);
+        await transporter.sendMail(mailOptions);
         res.json({
             message: "Room booked successfully! Confirmation email sent"
         });
