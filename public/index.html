@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Room Booking</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header class="hero">
+        <nav class="navbar">
+            <div class="logo">
+                <span>Hotel Transylvania</span>
+            </div>
+
+            <ul class="nav-links">
+                <li><a href="rooms.html">Rooms</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li class="dropdown">
+                    <a href="events.html">Events</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="events-diwali.html">Diwali</a></li>
+                        <li><a href="events-conference.html">Conference</a></li>
+                        <li><a href="events-new-year.html">New Year</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+            <button class="book-now" id="booknowbtn">Book Now</button>
+        </nav>
+
+        <div class="hero-content">
+            <h2>Start your vacation with us!</h2>
+            <p>
+                Discover comfort,luxury, and unforgettable experiences.
+                At Hotel Transylvania , we make your stay truly special.
+            </p>
+
+            <div class="about-card">
+                <h3>About Us</h3>
+                <p>
+                    Hotel Transylvania offers premium rooms, world-class hospitality,
+                    and breathtaking views to make your stay memorable.
+                    Trusted by thousands of guests worldwide.
+                </p>
+            </div>
+
+        </div>
+    </header>
+
+    <div class="hero-image">
+        <img id="randomimage"
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqdEu5wTQKfLn0NO95ITKyKL79GmXec5bPyA&s"
+            alt="hotel view">
+    </div>
+
+    <div class="booking-container hidden">
+        <form id="bookingform">
+            <label>
+                Full Name
+                <input type="text" id="name" placeholder="Enter your full name" required>
+            </label>
+
+            <label>
+                Check-in Date
+                <input type="date" id="checkin" required>
+            </label>
+
+            <label>
+                Check-out date
+                <input type="date" id="checkout" required>
+            </label>
+
+            <label>
+                Room type
+                <select id="room" required>
+                    <option value="">Select Room Type</option>
+                    <option value="single">Single</option>
+                    <option value="double">Double</option>
+                    <option value="deluxe">Deluxe</option>
+                </select>
+            </label>
+
+            <label>
+                Number of Guests
+                <input type="number" id="guests" min="1" placeholder="Guests" required>
+            </label>
+
+            <label>
+                Email Address
+                <input type="email" id="email" placeholder="Entre your email" required>
+            </label>
+
+            <p id="status" class="status"></p>
+            <button type="submit">BOOK ROOM</button>
+        </form>
+    </div>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+
+            <div class="footer-section">
+                <h3>Hotel Transylvania</h3>
+                <p>
+                    Experience comfort, luxury, and unforgettable moments.
+                    Your perfect stay starts with us.
+                </p>
+            </div>
+
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p>Email: info@hoteltransylvania.com</p>
+                <p>Phone: xxxxxxxxxx</p>
+                <p>Location: Transylvania, spain</p>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            © 2026 Hotel Transylvania. All rights reserved.
+        </div>
+    </footer>
+
+
+    <script src="script.js"></script>
+</body>
+
+</html>

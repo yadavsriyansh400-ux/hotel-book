@@ -1,0 +1,60 @@
+body
+{
+    min-height: 100vh;
+    background: linear-gradient(to right, #1d3557, #457b9d);
+}
+
+.gallery-hero {
+    background: url("https://images.unsplash.com/photo-1551882547-ff40c63fe5fa")
+    center / cover no-repeat;
+}
+
+.hotel-gallery {
+    max-width: 1200px;
+    margin: 80px auto;
+    padding: 0 40px;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.hotel-gallery img {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+    border-radius: 14px;
+
+    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hotel-gallery img:hover {
+    transform: scale(1.04);
+    box-shadow: 0 25px 45px rgba(0,0,0,0.25);
+}
+
+.page-hero {
+    height: 65vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    position: relative;
+    color: #ffffff;
+}
+
+.page-hero-content h1 {
+    font-size: 52px;
+    margin-bottom: 12px;
+    color: #ffffff;
+    text-shadow: 0 4px 12px rgba(0,0,0,0.7);
+}
+
+.page-hero-content p {
+    font-size: 18px;
+    line-height: 1.6;
+    color: #f1f1f1;
+    text-shadow: 0 3px 10px rgba(0,0,0,0.6);
+}
