@@ -1,5 +1,5 @@
 import express from "express";
-import nodemailer from "nodemailer";
+import { Resend } from "resend";
 import dotenv from "dotenv";
 import path from "path";
 import { fileURLToPath } from "url";
@@ -20,24 +20,17 @@ app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "../public/index.html"));
 });
 
+const resend = new Resend(process.env.RESEND_API_KEY);
+
 app.post("/book-room", async (req, res) => {
     const booking = req.body;
 
-    const transporter = nodemailer.createTransport({
-        host: "smtp.gmail.com",
-        port: 587,
-        secure: false, // use TLS (NOT SSL)
-        auth: {
-            user: process.env.EMAIL,
-            pass: process.env.EMAIL_PASS
-        }
-    });
-
-    const mailOptions = {
-        from: process.env.EMAIL,
-        to: booking.email,
-        subject: "Hotel Booking Confirmation",
-        text: `Hello ${booking.name},
+    try {
+        await resend.emails.send({
+            from: process.env.EMAIL, 
+            to: booking.email,
+            subject: "Hotel Booking Confirmation",
+            text: `Hello ${booking.name},
 
 Your room has been booked successfully
 
@@ -47,13 +40,12 @@ Room Type : ${booking.room}
 Guests : ${booking.guests}
 
 Thank you for choosing our hotel.`
-    };
+        });
 
-    try {
-        await transporter.sendMail(mailOptions);
         res.json({
             message: "Room booked successfully! Confirmation email sent"
         });
+
     } catch (error) {
         console.error("FULL ERROR:", error);
         res.status(500).json({
