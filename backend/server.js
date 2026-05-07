@@ -6,9 +6,6 @@ import { fileURLToPath } from "url";
 
 dotenv.config();
 
-console.log("EMAIL:", process.env.EMAIL);
-console.log("PASS exists:", !!process.env.EMAIL_PASS);
-
 const app = express();
 const port = process.env.PORT || 3000;
 
@@ -27,7 +24,9 @@ app.post("/book-room", async (req, res) => {
     const booking = req.body;
 
     const transporter = nodemailer.createTransport({
-        service: "gmail",
+        host: "smtp.gmail.com",
+        port: 587,
+        secure: false, // use TLS (NOT SSL)
         auth: {
             user: process.env.EMAIL,
             pass: process.env.EMAIL_PASS
@@ -39,7 +38,9 @@ app.post("/book-room", async (req, res) => {
         to: booking.email,
         subject: "Hotel Booking Confirmation",
         text: `Hello ${booking.name},
+
 Your room has been booked successfully
+
 Check-in : ${booking.checkin}
 Check-out : ${booking.checkout}
 Room Type : ${booking.room}
