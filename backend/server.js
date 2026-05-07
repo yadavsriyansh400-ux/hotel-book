@@ -26,9 +26,9 @@ app.post("/book-room", async (req, res) => {
     const booking = req.body;
 
     try {
-        await resend.emails.send({
-            from: process.env.EMAIL, 
-            to: "sriyanshy64@gmail.com",
+        const response = await resend.emails.send({
+            from: "onboarding@resend.dev",
+            to: "your_email@gmail.com", // keep this fixed for now
             subject: "Hotel Booking Confirmation",
             text: `Hello ${booking.name},
 
@@ -41,6 +41,8 @@ Guests : ${booking.guests}
 
 Thank you for choosing our hotel.`
         });
+
+        console.log("RESEND RESPONSE:", response);
 
         res.json({
             message: "Room booked successfully! Confirmation email sent"
