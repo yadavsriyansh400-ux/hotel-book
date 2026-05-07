@@ -28,7 +28,7 @@ app.post("/book-room", async (req, res) => {
     try {
         await resend.emails.send({
             from: process.env.EMAIL, 
-            to: booking.email,
+            to: "sriyanshy64@gmail.com",
             subject: "Hotel Booking Confirmation",
             text: `Hello ${booking.name},
 
