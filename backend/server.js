@@ -6,6 +6,9 @@ import { fileURLToPath } from "url";
 
 dotenv.config();
 
+console.log("EMAIL:", process.env.EMAIL);
+console.log("PASS exists:", !!process.env.EMAIL_PASS);
+
 const app = express();
 const port = process.env.PORT || 3000;
 
@@ -51,7 +54,7 @@ Thank you for choosing our hotel.`
             message: "Room booked successfully! Confirmation email sent"
         });
     } catch (error) {
-        console.error("MAIL ERROR:", error);
+        console.error("FULL ERROR:", error);
         res.status(500).json({
             message: "Booking done but mail failed"
         });
